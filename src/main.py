@@ -1,7 +1,10 @@
 from menu import *
+from bst import *
+
 
 def main():
-    print("Hello World")
+    while True:
+        input("nodes> ")
 
 
 if __name__ == "__main__":
