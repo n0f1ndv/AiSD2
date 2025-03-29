@@ -10,7 +10,7 @@ class BST:
 
     def search(self, key):
         x = self.root
-        while x is not None and key != x.key:
+        while x is not None and x.key != key:
             if key < x.key:
                 x = x.left
             else:
@@ -39,8 +39,52 @@ class BST:
         else:
             parent.right = new_node
 
-    def delete(self):
-        pass
+    def find_min(self, node):
+        while node.left is not None:
+            node = node.left
+
+        return node
+
+    def delete(self, key):
+        current = self.root
+        parent = None
+
+        while current is not None and current.key != key:
+            parent = current
+            if key < current.key:
+                current = current.left
+            else:
+                current = current.right
+
+            if current is None:
+                return
+            
+            # Node has no children
+            if current.left is None and current.right is None:
+                if current == self.root:
+                    self.root = None
+                elif current == parent.left:
+                    parent.left = None
+                else:
+                    parent.right = None
+
+            # Node has one child
+            elif current.left is None or current.right is None:
+                child = current.left if current.left is not None else current.right
+                if current == self.root:
+                    self.root = child
+                elif current == parent.left:
+                    parent.left = child
+                else:
+                    parent.right = child
+            
+            # Node has two children
+            else:
+                successor = self.find_min(current.right)
+                successor_key = successor.key
+                self.delete(successor_key)
+                current.key = successor_key
+
 
     def inorder(self):
         pass
