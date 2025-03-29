@@ -12,15 +12,7 @@ def main():
     tree.insert(27)
     tree.insert(8)
 
-    node = tree.search(27)
-    print("Node found:", node.key if node else "Not found")
-
-    node = tree.search(310)
-    print("Node found:", node.key if node else "Not found")
-
-    tree.delete(27)
-    node = tree.search(27)
-    print("Node found:", node.key if node else "Not found")
+    tree.inorder(tree.root)
 
 if __name__ == "__main__":
     main()

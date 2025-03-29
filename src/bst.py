@@ -9,14 +9,14 @@ class BST:
         self.root = None
 
     def search(self, key):
-        x = self.root
-        while x is not None and x.key != key:
-            if key < x.key:
-                x = x.left
+        node = self.root
+        while node is not None and node.key != key:
+            if key < node.key:
+                node = node.left
             else:
-                x = x.right
+                node = node.right
     
-        return x
+        return node
 
     def insert(self, key):
         new_node = Node(key)
@@ -85,12 +85,20 @@ class BST:
                 self.delete(successor_key)
                 current.key = successor_key
 
+    def inorder(self, node):
+        if node is not None:
+            self.inorder(node.left)
+            print(node.key, end=' ')
+            self.inorder(node.right)
 
-    def inorder(self):
-        pass
-
-    def preorder(self):
-        pass
+    def preorder(self, node):
+        if node is not None:
+            print(node.key, end=' ')
+            self.preorder(node.left)
+            self.preorder(node.right)
     
-    def postorder(self):
-        pass
+    def postorder(self, node):
+        if node is not None:
+            self.postorder(node.left)
+            self.postorder(node.right)
+            print(node.key, end=' ')
