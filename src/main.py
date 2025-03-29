@@ -5,6 +5,7 @@ from bst import *
 def main():
     tree = BST()
 
+    # TODO: create a function to create tree
     tree.insert(20)
     tree.insert(14)
     tree.insert(3)
@@ -12,7 +13,8 @@ def main():
     tree.insert(27)
     tree.insert(8)
 
-    tree.inorder(tree.root)
+    tree.preorder(tree.root)
+    print()
 
 if __name__ == "__main__":
     main()
