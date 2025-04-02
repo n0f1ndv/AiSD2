@@ -2,17 +2,9 @@ from menu import menu
 from bst import *
 
 def main():
-    tree = BST()
+    # TODO: get array from command line
 
-    # TODO: create a function to create tree
-    tree.insert(20)
-    tree.insert(14)
-    tree.insert(3)
-    tree.insert(11)
-    tree.insert(27)
-    tree.insert(8)
-
-    menu(tree)
+    menu([2, 14, 5, 6, 7, 8, 13])
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,5 @@
+from backend import create_tree
+
 def help_message():
     print('Help Show this menu',
     'Print      Print the tree using In-order, Pre-order, Post-order',
@@ -6,6 +8,7 @@ def help_message():
     'Export     Export the tree to a file', # Maybe I will do it I dunno
     'Rebalance  Rebalance the tree',
     'Exit       Exits the program (same as CTRL+D)', sep='\n')
+
 
 def print_tree(tree):
     print('In-order:', end=' ')
@@ -18,12 +21,13 @@ def print_tree(tree):
     tree.postorder(tree.root)
     print()
 
-def menu(tree):
-    state = ''
-    arr = []
 
-    print(f'nodes> {len(arr)}')
-    print(f'insert> {arr}')
+def menu(arr):
+    state = ''
+    tree = create_tree(arr)
+
+    print(f'nodes> ')
+    print(f'insert> ')
 
     while True and state != 'exit':
         state = input('action> ')
