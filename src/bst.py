@@ -45,7 +45,7 @@ class BST:
 
         return node
 
-    def delete(self, key):
+    def remove(self, key):
         current = self.root
         parent = None
 
@@ -82,7 +82,7 @@ class BST:
             else:
                 successor = self.find_min(current.right)
                 successor_key = successor.key
-                self.delete(successor_key)
+                self.remove(successor_key)
                 current.key = successor_key
 
     def inorder(self, node):
@@ -102,3 +102,9 @@ class BST:
             self.postorder(node.left)
             self.postorder(node.right)
             print(node.key, end=' ')
+
+    def delete_tree(self, node):
+        if node is not None:
+            self.delete_tree(node.left)
+            self.delete_tree(node.right)
+            self.root = None
