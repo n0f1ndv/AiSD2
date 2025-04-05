@@ -113,6 +113,10 @@ def delete_bst(root, key):
     return root
 
 
+def delete_all(root):
+    pass
+
+
 def delete_all_bst(root):
     if root:
         delete_all_bst(root.left)
