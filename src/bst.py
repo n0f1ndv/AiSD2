@@ -5,6 +5,7 @@ class Node:
         self.key = key
 
 
+# INSERTING ELEMENTS INTO BST
 def insert(root, key):
     tmp = Node(key)
 
@@ -46,6 +47,7 @@ def create_tree(lst):
     return root
 
 
+# TRAVERSING BST
 def inorder(node):
     if node:
         inorder(node.left)
@@ -67,6 +69,7 @@ def postorder(node):
         print(node.key, end=' ')
 
 
+# FINDING MIN MAX IN BST
 def findmin(node):
     while node.left is not None:
         node = node.left
@@ -81,6 +84,7 @@ def findmax(node):
     return node
 
 
+# DELETING FROM BST
 def delete(root, key):
     if root is None:
         return None
@@ -116,5 +120,24 @@ def delete_all(root):
     return root
 
 
-def rebalance(root):
-    pass
+# BALANCING BST
+def sort_inorder(root, nodes):
+    if root:
+        sort_inorder(root.left, nodes)
+        nodes.append(root.key)
+        sort_inorder(root.right, nodes)
+
+    return nodes
+
+
+def build_balanced_tree(nodes, start, end):
+    if start > end:
+        return
+
+    middle = (start + end) // 2
+    root = Node(nodes[middle])
+
+    root.left = build_balanced_tree(nodes, start, middle - 1)
+    root.right = build_balanced_tree(nodes, middle + 1, end)
+
+    return root

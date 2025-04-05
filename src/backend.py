@@ -6,7 +6,6 @@ def help_message():
     'Print      Print the tree using In-order, Pre-order, Post-order',
     'Delete     Delete elements from the tree',
     'Delete All Delete whole tree',
-    'Rebalance  Rebalancing the tree',
     'Export     Export the tree to a file',
     'Rebalance  Rebalance the tree',
     'Exit       Exits the program (same as CTRL+D)', sep='\n')
@@ -35,7 +34,12 @@ def delete_elements(tree):
     to_del = [int(x) for x in input('delete> ').split()]
 
     for num in to_del:
-        print(num)
         tree = delete(tree, num)
 
     return tree
+
+def rebalance(tree):
+    lst = []
+    sort_inorder(tree, lst)
+    
+    return build_balanced_tree(lst, 0, len(lst) - 1)
