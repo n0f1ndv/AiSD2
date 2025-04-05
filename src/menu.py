@@ -12,6 +12,14 @@ def help_message():
     'Exit       Exits the program (same as CTRL+D)', sep='\n')
 
 
+def delete_elements(tree):
+    to_del = [int(x) for x in input('delete> ').split()]
+    print(to_del)
+
+    for num in to_del:
+        tree = delete(tree, num)
+
+
 def findminmax(tree):
     print(f'Min: {findmin(tree).key}')
     print(f'Max: {findmax(tree).key}')
@@ -31,10 +39,10 @@ def print_tree(tree):
     print()
 
 
-def menu(arr):
+def menu(lst):
     state = ''
 
-    tree = create_tree(arr)
+    tree = create_tree(lst)
 
     while True and state != 'exit':
         state = input('action> ').strip().lower()
@@ -46,7 +54,7 @@ def menu(arr):
         elif state == 'print':
             print_tree(tree)
         elif state == 'delete':
-            pass
+            delete_elements(tree)
         elif state == 'delete all':
             pass
         elif state == 'export':
