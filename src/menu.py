@@ -1,43 +1,16 @@
-from bst import *
+from backend import *
 
-
-def help_message():
-    print('Help Show this menu',
-    'FindMinMax Searching minimum and maximum value in the tree',
-    'Print      Print the tree using In-order, Pre-order, Post-order',
-    'Delete     Delete elements from the tree',
-    'Delete All Delete whole tree',
-    'Export     Export the tree to a file',
-    'Rebalance  Rebalance the tree',
-    'Exit       Exits the program (same as CTRL+D)', sep='\n')
-
-
-def findminmax(tree):
-    print(f'Min: {findmin(tree).key}')
-    print(f'Max: {findmax(tree).key}')
-
-
-def print_tree(tree):
-    print('In-order:', end=' ')
-    inorder(tree)
-    print()
-
-    print('Pre-order:', end=' ')
-    preorder(tree)
-    print()
-
-    print('Post-order:', end=' ')
-    postorder(tree)
-    print()
-
-
-def menu(arr):
+def menu(lst):
     state = ''
-
-    tree = create_tree(arr)
+    tree = create_tree(lst)
 
     while True and state != 'exit':
-        state = input('action> ').strip().lower()
+        try:
+            state = input('action> ').strip().lower()
+        except KeyboardInterrupt:
+            state = 'exit'
+            print('\nKeyboard Interrupt')
+
 
         if state == 'help':
             help_message()
@@ -46,12 +19,13 @@ def menu(arr):
         elif state == 'print':
             print_tree(tree)
         elif state == 'delete':
-            pass
+            tree = delete_elements(tree)
         elif state == 'delete all':
-            pass
+            tree = delete_all(tree)
         elif state == 'export':
             pass # This is for extra points I will do it later
         elif state == 'rebalance':
-            pass
+            tree = rebalance(tree)
         elif state == 'exit':
+            print('Closing the program.')
             state = 'exit'

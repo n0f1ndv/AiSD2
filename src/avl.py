@@ -75,22 +75,13 @@ def create_tree_avl(lst):
 
     return root
 
-def rebalance(root,lst):
-    inorder(root, lst)
-    root=create_tree_avl(lst)
-    
-    return root
-        
-#-----------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------
 
-
-def inorder(node, lst):
+def inorder(node):
     if node:
-        inorder(node.left,lst)
+        inorder(node.left)
         print(node.key, end=' ')
-        lst.append(node.key)
-        inorder(node.right,lst)
-        return(lst)
+        inorder(node.right)
 def preorder(node):
     if node:
         print(node.key, end=' ')
@@ -155,7 +146,6 @@ def menu(arr):
         if state == 'findminmax' or state == 'fmm':
             findminmax(tree)
         elif state == 'print':
-            lista=[]
             print_tree(tree,lista)
         elif state == 'delete':
             pass
@@ -164,8 +154,7 @@ def menu(arr):
         elif state == 'export':
             pass # This is for extra points I will do it later
         elif state == 'rebalance':
-            lista=[]
-            tree=rebalance(tree,lista)
+            pass
         elif state == 'exit':
             state = 'exit'
 menu([1,2,3,6,5,4,7])
