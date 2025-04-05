@@ -34,13 +34,14 @@ def insert(root, key):
 
 
 def create_tree(lst):
-    root = Node(lst[0])
+    print(f'Inserting...', end=' ')
+    for num in lst:
+        print(f'{num}', end=' ')
+    print()
 
-    print(f'Inserting... {lst[0]}', end=' ')
+    root = Node(lst[0])
     for num in lst[1:]:
         root = insert(root, num)
-        print(num, end=' ')
-    print()
 
     return root
 
@@ -85,21 +86,15 @@ def delete(root, key):
         return None
 
     if key < root.key:
-        print('if', root.key)
         root.left = delete(root.left, key)
     elif key > root.key:
-        print('elif', root.key)
         root.right = delete(root.right, key)
     else:
-        print('else', root.key)
         if root.left is None:
-            print('if')
             temp = root.right
             root = None
-            print(root)
             return temp
         elif root.right is None:
-            print('elif')
             temp = root.left
             root = None
             return temp
@@ -119,3 +114,7 @@ def delete_all(root):
         root = None
 
     return root
+
+
+def rebalance(root):
+    pass
