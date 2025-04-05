@@ -2,7 +2,7 @@ from backend import *
 
 def menu(lst):
     state = ''
-    tree = create_tree(lst)
+    tree = create_bst(lst)
 
     while True and state != 'exit':
         try:
@@ -21,11 +21,11 @@ def menu(lst):
         elif state == 'delete':
             tree = delete_elements(tree)
         elif state == 'delete all':
-            tree = delete_all(tree)
+            tree = delete_all_bst(tree)
         elif state == 'export':
             pass # This is for extra points I will do it later
         elif state == 'rebalance':
-            tree = rebalance(tree)
+            rebalance(tree, len(lst))
         elif state == 'exit':
-            print('Closing the program.')
+            print('Closing the program')
             state = 'exit'

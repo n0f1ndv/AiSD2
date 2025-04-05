@@ -149,9 +149,12 @@ def vine_to_tree_bst(root, size):
 
 def compress(root, count):
     scanner = root
-    for i in range(0, count - 1):
+    for _ in range(count):
         child = scanner.right
+        if child is None:
+            break
         scanner.right = child.right
-        scanner = scanner.right
-        child.right = scanner.left
-        scanner.left = child
+        child.right = scanner.right.left if scanner.right else None
+        if scanner.right is not None:
+            scanner.right.left = child
+        scanner = scanner.right if scanner.right else scanner

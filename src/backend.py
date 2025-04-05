@@ -12,21 +12,21 @@ def help_message():
 
 
 def findminmax(tree):
-    print(f'Min: {findmin(tree).key}')
-    print(f'Max: {findmax(tree).key}')
+    print(f'Min: {findmin_bst(tree).key}')
+    print(f'Max: {findmax_bst(tree).key}')
 
 
 def print_tree(tree):
     print('In-order:', end=' ')
-    inorder(tree)
+    inorder_bst(tree)
     print()
 
     print('Pre-order:', end=' ')
-    preorder(tree)
+    preorder_bst(tree)
     print()
 
     print('Post-order:', end=' ')
-    postorder(tree)
+    postorder_bst(tree)
     print()
 
 
@@ -34,12 +34,15 @@ def delete_elements(tree):
     to_del = [int(x) for x in input('delete> ').split()]
 
     for num in to_del:
-        tree = delete(tree, num)
+        tree = delete_bst(tree, num)
 
     return tree
 
-def rebalance(tree):
-    lst = []
-    sort_inorder(tree, lst)
+def rebalance(tree, size):
+    tree_to_vine_bst(tree)
+    inorder_bst(tree)
+    print()
     
-    return build_balanced_tree(lst, 0, len(lst) - 1)
+    vine_to_tree_bst(tree, size)
+    inorder_bst(tree)
+    print()
