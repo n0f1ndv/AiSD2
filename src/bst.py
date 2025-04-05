@@ -1,3 +1,5 @@
+import math
+
 class Node:
     def __init__(self, key):
         self.left = None
@@ -6,7 +8,7 @@ class Node:
 
 
 # INSERTING ELEMENTS INTO BST
-def insert(root, key):
+def insert_bst(root, key):
     tmp = Node(key)
 
     if root is None:
@@ -34,7 +36,7 @@ def insert(root, key):
     return root
 
 
-def create_tree(lst):
+def create_bst(lst):
     print(f'Inserting...', end=' ')
     for num in lst:
         print(f'{num}', end=' ')
@@ -42,42 +44,42 @@ def create_tree(lst):
 
     root = Node(lst[0])
     for num in lst[1:]:
-        root = insert(root, num)
+        root = insert_bst(root, num)
 
     return root
 
 
 # TRAVERSING BST
-def inorder(node):
+def inorder_bst(node):
     if node:
-        inorder(node.left)
+        inorder_bst(node.left)
         print(node.key, end=' ')
-        inorder(node.right)
+        inorder_bst(node.right)
 
 
-def preorder(node):
+def preorder_bst(node):
     if node:
         print(node.key, end=' ')
-        preorder(node.left)
-        preorder(node.right)
+        preorder_bst(node.left)
+        preorder_bst(node.right)
 
 
-def postorder(node):
+def postorder_bst(node):
     if node:
-        postorder(node.left)
-        postorder(node.right)
+        postorder_bst(node.left)
+        postorder_bst(node.right)
         print(node.key, end=' ')
 
 
 # FINDING MIN MAX IN BST
-def findmin(node):
+def findmin_bst(node):
     while node.left is not None:
         node = node.left
 
     return node
     
 
-def findmax(node):
+def findmax_bst(node):
     while node.right is not None:
         node = node.right
 
@@ -85,14 +87,14 @@ def findmax(node):
 
 
 # DELETING FROM BST
-def delete(root, key):
+def delete_bst(root, key):
     if root is None:
         return None
 
     if key < root.key:
-        root.left = delete(root.left, key)
+        root.left = delete_bst(root.left, key)
     elif key > root.key:
-        root.right = delete(root.right, key)
+        root.right = delete_bst(root.right, key)
     else:
         if root.left is None:
             temp = root.right
@@ -103,31 +105,37 @@ def delete(root, key):
             root = None
             return temp
         
-        temp = findmin(root.right)
+        temp = findmin_bst(root.right)
         root.key = temp.key
 
-        root.right = delete(root.right, temp.key)
+        root.right = delete_bst(root.right, temp.key)
 
     return root
 
 
-def delete_all(root):
+def delete_all_bst(root):
     if root:
-        delete_all(root.left)
-        delete_all(root.right)
+        delete_all_bst(root.left)
+        delete_all_bst(root.right)
         root = None
 
     return root
 
 
 # BALANCING BST
-def sort_inorder(root, nodes):
-    if root:
-        sort_inorder(root.left, nodes)
-        nodes.append(root.key)
-        sort_inorder(root.right, nodes)
-
-    return nodes
+def tree_to_vine_bst(root):
+    tail = root
+    rest = tail.right
+    while rest is not None:
+        if rest.left is None:
+            tail = rest
+            rest = rest.right
+        else:
+            temp = rest.left
+            rest.left = temp.right
+            temp.right = rest
+            rest = temp
+            tail.right = temp
 
 
 def build_balanced_tree(nodes, start, end):
