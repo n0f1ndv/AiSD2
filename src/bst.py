@@ -138,14 +138,20 @@ def tree_to_vine_bst(root):
             tail.right = temp
 
 
-def build_balanced_tree(nodes, start, end):
-    if start > end:
-        return
+def vine_to_tree_bst(root, size):
+    leaves = size + 1 - pow(2, math.floor(math.log2(size + 1)))
+    compress(root, leaves)
+    size -= leaves
+    while size > 1:
+        compress(root, math.floor(size / 2))
+        size = math.floor(size / 2)
 
-    middle = (start + end) // 2
-    root = Node(nodes[middle])
 
-    root.left = build_balanced_tree(nodes, start, middle - 1)
-    root.right = build_balanced_tree(nodes, middle + 1, end)
-
-    return root
+def compress(root, count):
+    scanner = root
+    for i in range(0, count - 1):
+        child = scanner.right
+        scanner.right = child.right
+        scanner = scanner.right
+        child.right = scanner.left
+        scanner.left = child
