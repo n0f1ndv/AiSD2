@@ -82,18 +82,24 @@ def findmax(node):
 
 def delete(root, key):
     if root is None:
-        return root
+        return None
 
     if key < root.key:
+        print('if', root.key)
         root.left = delete(root.left, key)
     elif key > root.key:
+        print('elif', root.key)
         root.right = delete(root.right, key)
     else:
+        print('else', root.key)
         if root.left is None:
+            print('if')
             temp = root.right
             root = None
+            print(root)
             return temp
         elif root.right is None:
+            print('elif')
             temp = root.left
             root = None
             return temp
@@ -106,6 +112,10 @@ def delete(root, key):
     return root
 
 
-
 def delete_all(root):
-    pass
+    if root:
+        delete_all(root.left)
+        delete_all(root.right)
+        root = None
+
+    return root
