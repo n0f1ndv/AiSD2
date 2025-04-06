@@ -48,10 +48,14 @@ def print_tree(tree):
     print()
 
 
-def delete_elements(tree):
+def delete_elements(tree, type):
     to_del = [int(x) for x in input('delete> ').split()]
 
     for num in to_del:
-        tree = delete_bst(tree, num)
+        if type == 'BST':
+            tree = delete_bst(tree, num)
+        elif type == 'AVL':
+            # tree = delete_avl(tree, num)
+            pass
 
     return tree

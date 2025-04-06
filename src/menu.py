@@ -18,9 +18,16 @@ def menu(lst, type):
         elif state == 'print':
             print_tree(tree)
         elif state == 'delete':
-            tree = delete_elements(tree) # BST specific waiting for AVL impl
+            if type == 'BST':
+                tree = delete_elements(tree, type) # BST specific waiting for AVL impl
+            elif type == 'AVL':
+                pass # TODO Put delete function here
         elif state == 'delete all':
-            tree = delete_all_bst(tree) # BST specific ^ same 
+            if type == 'BST':
+                tree = delete_all_bst(tree)
+            elif type == 'AVL':
+                # tree = delete_all_avl(tree)
+                pass # TODO Put delete all function here
         elif state == 'export':
             pass # This is for extra points I will do it later
         elif state == 'rebalance':
