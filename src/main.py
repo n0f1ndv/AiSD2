@@ -9,7 +9,7 @@ def main():
 
     # BST or AVL get it from command line
     # def menu(lst, type)
-    menu([2, 5, 10, 12, 13, 6, 9], input('tree type> '))
+    menu([2, 5, 10, 12, 13, 6, 9], input('tree type> ').upper())
 
 if __name__ == "__main__":
     main()

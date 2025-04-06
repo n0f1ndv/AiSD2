@@ -55,7 +55,25 @@ def delete_elements(tree, type):
         if type == 'BST':
             tree = delete_bst(tree, num)
         elif type == 'AVL':
-            # tree = delete_avl(tree, num)
+            tree = delete_avl(tree, num)
             pass
 
     return tree
+
+def export(root):
+    print(f"{{{root.key}}}")
+    print("child", end=" ")
+    if root.left is None:
+        print("[missing]")
+    else:
+        print("{node")
+        export(root.left)
+
+    print("child", end=" ")
+    if root.right is not None:
+        print("{node")
+        export(root.right)
+    else:
+        print("[missing]")
+    print("}")
+    #TODO rempve last "}" and add ";"

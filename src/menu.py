@@ -18,10 +18,7 @@ def menu(lst, type):
         elif state == 'print':
             print_tree(tree)
         elif state == 'delete':
-            if type == 'BST':
-                tree = delete_elements(tree, type) # BST specific waiting for AVL impl
-            elif type == 'AVL':
-                pass # TODO Put delete function here
+            tree = delete_elements(tree, type)
         elif state == 'delete all':
             if type == 'BST':
                 tree = delete_all_bst(tree)
@@ -29,7 +26,7 @@ def menu(lst, type):
                 # tree = delete_all_avl(tree)
                 pass # TODO Put delete all function here
         elif state == 'export':
-            pass # This is for extra points I will do it later
+            export(tree) # TODO: minimal improvements
         elif state == 'rebalance':
             tree = vine_to_bst(tree) # BST specific
         elif state == 'exit':
