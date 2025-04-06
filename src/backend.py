@@ -37,12 +37,3 @@ def delete_elements(tree):
         tree = delete_bst(tree, num)
 
     return tree
-
-def rebalance(tree, size):
-    tree_to_vine_bst(tree)
-    inorder_bst(tree)
-    print()
-    
-    vine_to_tree_bst(tree, size)
-    inorder_bst(tree)
-    print()

@@ -1,11 +1,5 @@
 import math
 
-class Node:
-    def __init__(self, key):
-        self.left = None
-        self.right = None
-        self.key = key
-
 
 # INSERTING ELEMENTS INTO BST
 def insert_bst(root, key):
@@ -127,38 +121,54 @@ def delete_all_bst(root):
 
 
 # BALANCING BST
-def tree_to_vine_bst(root):
-    tail = root
-    rest = tail.right
-    while rest is not None:
-        if rest.left is None:
-            tail = rest
-            rest = rest.right
+def bst_to_vine(root):
+    count = 0
+    
+    tmp = root.right
+    while tmp:
+        if tmp.left:
+            old_tmp = tmp
+            tmp = tmp.left
+            old_tmp.left = tmp.right
+            tmp.right = old_tmp
+            root.right = tmp
         else:
-            temp = rest.left
-            rest.left = temp.right
-            temp.right = rest
-            rest = temp
-            tail.right = temp
+            count += 1
+            root = tmp
+            tmp = tmp.right
+
+    return count
 
 
-def vine_to_tree_bst(root, size):
-    leaves = size + 1 - pow(2, math.floor(math.log2(size + 1)))
-    compress(root, leaves)
-    size -= leaves
-    while size > 1:
-        compress(root, math.floor(size / 2))
-        size = math.floor(size / 2)
+
+def vine_to_bst(root):
+    grand = Node(0)
+
+    grand.right = root
+
+    count = bst_to_vine(grand)
+
+    height = int(math.log2(count + 1))
+
+    nodes = pow(2, height) - 1
+
+    compress(grand, count - nodes)
+
+    for nodes in [nodes // 2**i for i in range(1, height + 1)]:
+        compress(grand, nodes)
+
+    return grand.right
 
 
 def compress(root, count):
-    scanner = root
-    for _ in range(count):
-        child = scanner.right
-        if child is None:
-            break
-        scanner.right = child.right
-        child.right = scanner.right.left if scanner.right else None
-        if scanner.right is not None:
-            scanner.right.left = child
-        scanner = scanner.right if scanner.right else scanner
+    tmp = root.right
+ 
+    # Traverse and left-rotate root m times to compress given vine form of BST
+    for i in range(count):
+        oldTmp = tmp
+        tmp = tmp.right
+        root.right = tmp
+        oldTmp.right = tmp.left
+        tmp.left = oldTmp
+        root = tmp
+        tmp = tmp.right

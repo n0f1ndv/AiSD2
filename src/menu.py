@@ -25,7 +25,7 @@ def menu(lst):
         elif state == 'export':
             pass # This is for extra points I will do it later
         elif state == 'rebalance':
-            rebalance(tree, len(lst))
+            tree = vine_to_bst(tree)
         elif state == 'exit':
             print('Closing the program')
             state = 'exit'
