@@ -1,5 +1,6 @@
 import math
-
+from nodes import Node
+from traversals import findmin
 
 # INSERTING ELEMENTS INTO BST
 def insert_bst(root, key):
@@ -12,72 +13,19 @@ def insert_bst(root, key):
     current = root
     while current is not None:
         parent = current
-        #print(f'key ... current.key: {key} ... {current.key}')
         if key < current.key:
             current = current.left
         elif key > current.key:
             current = current.right
         else:
-            return root # key already exists
+            return root
         
     if key < parent.key:
         parent.left = tmp
-        #print(f'par {parent.key}')
     else:
         parent.right = tmp
-        #print(f'par {parent.key}')
 
     return root
-
-
-def create_bst(lst):
-    print(f'Inserting...', end=' ')
-    for num in lst:
-        print(f'{num}', end=' ')
-    print()
-
-    root = Node(lst[0])
-    for num in lst[1:]:
-        root = insert_bst(root, num)
-
-    return root
-
-
-# TRAVERSING BST
-def inorder_bst(node):
-    if node:
-        inorder_bst(node.left)
-        print(node.key, end=' ')
-        inorder_bst(node.right)
-
-
-def preorder_bst(node):
-    if node:
-        print(node.key, end=' ')
-        preorder_bst(node.left)
-        preorder_bst(node.right)
-
-
-def postorder_bst(node):
-    if node:
-        postorder_bst(node.left)
-        postorder_bst(node.right)
-        print(node.key, end=' ')
-
-
-# FINDING MIN MAX IN BST
-def findmin_bst(node):
-    while node.left is not None:
-        node = node.left
-
-    return node
-    
-
-def findmax_bst(node):
-    while node.right is not None:
-        node = node.right
-
-    return node
 
 
 # DELETING FROM BST
@@ -99,16 +47,12 @@ def delete_bst(root, key):
             root = None
             return temp
         
-        temp = findmin_bst(root.right)
+        temp = findmin(root.right)
         root.key = temp.key
 
         root.right = delete_bst(root.right, temp.key)
 
     return root
-
-
-def delete_all(root):
-    pass
 
 
 def delete_all_bst(root):
@@ -138,7 +82,6 @@ def bst_to_vine(root):
             tmp = tmp.right
 
     return count
-
 
 
 def vine_to_bst(root):

@@ -1,4 +1,22 @@
 from bst import *
+from avl import *
+from traversals import *
+
+def create_tree(lst, type):
+    print(f'Inserting...', end=' ')
+    for num in lst:
+        print(f'{num}', end=' ')
+    print()
+
+    root = Node(lst[0])
+    for num in lst[1:]:
+        if type == 'BST':
+            root = insert_bst(root, num)
+        elif type == 'AVL':
+            root = insert_avl(root, num)
+
+    return root
+
 
 def help_message():
     print('Help Show this menu',
@@ -12,21 +30,21 @@ def help_message():
 
 
 def findminmax(tree):
-    print(f'Min: {findmin_bst(tree).key}')
-    print(f'Max: {findmax_bst(tree).key}')
+    print(f'Min: {findmin(tree).key}')
+    print(f'Max: {findmax(tree).key}')
 
 
 def print_tree(tree):
     print('In-order:', end=' ')
-    inorder_bst(tree)
+    inorder(tree)
     print()
 
     print('Pre-order:', end=' ')
-    preorder_bst(tree)
+    preorder(tree)
     print()
 
     print('Post-order:', end=' ')
-    postorder_bst(tree)
+    postorder(tree)
     print()
 
 

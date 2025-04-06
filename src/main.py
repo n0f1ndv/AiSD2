@@ -1,12 +1,15 @@
 from menu import menu
-from bst import *
+
+# TODO: I need to check if dependencies are imported correctly
 
 def main():
     # TODO: get array from command line
     # python src/main.py --tree AVL or BST <<<< array of numbers
+    # if users will give the wrong tree type close the program
 
-    type = 'BST' # BST or AVL get it from command line
-    menu([2, 5, 10, 12, 13, 6, 9], type)
+    # BST or AVL get it from command line
+    # def menu(lst, type)
+    menu([2, 5, 10, 12, 13, 6, 9], input('tree type> '))
 
 if __name__ == "__main__":
     main()
