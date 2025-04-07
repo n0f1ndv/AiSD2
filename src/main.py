@@ -27,8 +27,9 @@ def main():
         print("Error: Invalid tree type. Use 'AVL' or 'BST'.")
         sys.exit(1)
 
-    input=sys.stdin.readline().split()
+    input=sys.stdin.readline().strip().split(",")
     try:
+        print(input)
         data=[int(x) for x in input]
     except EOFError:
         print("Error reading input.")
