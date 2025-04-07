@@ -1,0 +1,64 @@
+{9}
+child {node
+{5}
+child {node
+{3}
+child {node
+{2}
+child {node
+{1}
+child [missing]
+child [missing]
+}
+child [missing]
+}
+child {node
+{4}
+child [missing]
+child [missing]
+}
+}
+child {node
+{7}
+child {node
+{6}
+child [missing]
+child [missing]
+}
+child {node
+{8}
+child [missing]
+child [missing]
+}
+}
+}
+child {node
+{13}
+child {node
+{11}
+child {node
+{10}
+child [missing]
+child [missing]
+}
+child {node
+{12}
+child [missing]
+child [missing]
+}
+}
+child {node
+{15}
+child {node
+{14}
+child [missing]
+child [missing]
+}
+child {node
+{16}
+child [missing]
+child [missing]
+}
+}
+}
+}

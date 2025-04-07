@@ -32,33 +32,17 @@ def rotation_right(x):
     y.height = 1 + max(get_height(y.left), get_height(y.right))
     return y
 
-
-def insert_avl(root, key):
-    tmp = Node_AVL(key)
-
-    if root is None:
-        return tmp
+def create_avl(lst):
+    if not lst:
+        return None
+    lst.sort()
+    pivot=len(lst)//2
+    root=Node_AVL(lst[pivot])
+    if len(lst)!= 1:
+        root.left=create_avl(lst[:pivot])
+        root.right=create_avl(lst[pivot+1:])
     
-    if key < root.key:
-        root.left = insert_avl(root.left,key)
-    elif key > root.key:
-        root.right = insert_avl(root.right,key)
-    else:
-        return root
-        
-    root.height = 1 + max(get_height(root.left), get_height(root.right))
-    balance = get_balance(root)
-    
-    if balance <-1 and key > root.right.key: #przeważa prawa gałąź, nowy liść po prawej stronie
-        return rotation_left(root)
-    if balance <-1 and key < root.right.key: #przeważa prawa gałąź, nowy liść po lewej stronie
-        root.right=rotation_right(root.right)
-        return rotation_left(root)    
-    if balance >1 and key > root.left.key: #przeważa lewa gałąź, nowy liść po prawej stronie
-        root.left=rotation_left(root.left)
-        return rotation_right(root)
-    if balance >1 and key < root.left.key: #przeważa lewa gałąź, nowy liść po lewej stronie
-        return rotation_right(root)
+    root.height = root.height = 1 + max(get_height(root.left), get_height(root.right))
 
     return root
 
@@ -92,18 +76,17 @@ def delete_avl(root, key):
     root.height = 1 + max(get_height(root.left), get_height(root.right))
     balance = get_balance(root)
     
-    if balance <-1 and get_balance(root.right) <= 0: #przeważa prawa gałąź, nowy liść po prawej stronie
+    if balance <-1 and get_balance(root.right) <= 0:
         return rotation_left(root)
-    if balance <-1 and get_balance(root.right) > 0: #przeważa prawa gałąź, nowy liść po lewej stronie
+    if balance <-1 and get_balance(root.right) > 0:
         root.right=rotation_right(root.right)
         return rotation_left(root)    
-    if balance >1 and get_balance(root.left) < 0: #przeważa lewa gałąź, nowy liść po prawej stronie
+    if balance >1 and get_balance(root.left) < 0:
         root.left=rotation_left(root.left)
         return rotation_right(root)
-    if balance >1 and get_balance(root.left) >= 0: #przeważa lewa gałąź, nowy liść po lewej stronie
+    if balance >1 and get_balance(root.left) >= 0: 
         return rotation_right(root)
 
     return root
-    
 
 # TODO: delete operations and rebalance?? idk if it makes sense

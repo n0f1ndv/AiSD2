@@ -9,11 +9,11 @@ def create_tree(lst, type):
     print()
 
     root = Node(lst[0])
-    for num in lst[1:]:
-        if type == 'BST':
+    if type == 'BST':    
+        for num in lst[1:]:
             root = insert_bst(root, num)
-        elif type == 'AVL':
-            root = insert_avl(root, num)
+    elif type == 'AVL':
+        root = create_avl(lst)
 
     return root
 
@@ -60,20 +60,20 @@ def delete_elements(tree, type):
 
     return tree
 
-def export(root):
-    print(f"{{{root.key}}}")
-    print("child", end=" ")
+def export(root, file):
+    file.write(f"{{{root.key}}}\n")
+    file.write("child ")
     if root.left is None:
-        print("[missing]")
+        file.write("[missing]\n")
     else:
-        print("{node")
-        export(root.left)
+        file.write("{node\n")
+        export(root.left, file)
 
-    print("child", end=" ")
-    if root.right is not None:
-        print("{node")
-        export(root.right)
+    file.write("child ")
+    if root.right is None:
+        file.write("[missing]\n")
     else:
-        print("[missing]")
-    print("}")
+        file.write("{node\n")
+        export(root.right, file)
+    file.write("}\n")
     #TODO rempve last "}" and add ";"

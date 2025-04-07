@@ -1,15 +1,19 @@
 from backend import *
-
-def menu(lst, type):
+import sys
+def menu(lst, type,):
     state = ''
     tree = create_tree(lst, type)
 
     while True and state != 'exit':
+               
         try:
             state = input('action> ').strip().lower()
         except KeyboardInterrupt:
             state = 'exit'
             print('\nKeyboard Interrupt')
+        except EOFError:
+            state = 'exit'
+            print("\nEnd of input detected. Exiting program.")
 
         if state == 'help':
             help_message()
@@ -26,7 +30,9 @@ def menu(lst, type):
                 # tree = delete_all_avl(tree)
                 pass # TODO Put delete all function here
         elif state == 'export':
-            export(tree) # TODO: minimal improvements
+            with open("exported.txt", "w") as file:
+                export(tree, file) # TODO: minimal improvements
+            print("exporting")
         elif state == 'rebalance':
             tree = vine_to_bst(tree) # BST specific
         elif state == 'exit':
