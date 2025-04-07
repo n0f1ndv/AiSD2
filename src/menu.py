@@ -31,7 +31,7 @@ def menu(lst, type,):
                 pass # TODO Put delete all function here
         elif state == 'export':
             with open("exported.txt", "w") as file:
-                file.write = export(tree) # TODO: minimal improvements
+                export(tree,file) # TODO: minimal improvements
             print("exporting")
         elif state == 'rebalance':
             tree = vine_to_bst(tree) # BST specific

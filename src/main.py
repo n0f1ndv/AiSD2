@@ -29,7 +29,6 @@ def main():
 
     input=sys.stdin.readline().strip().split(",")
     try:
-        print(input)
         data=[int(x) for x in input]
     except EOFError:
         print("Error reading input.")

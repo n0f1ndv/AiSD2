@@ -60,10 +60,22 @@ def delete_elements(tree, type):
 
     return tree
 
-def export(node):
-    if not node.left and not node.right:
-        return f"node {node.value}"
-    l_str = f"child {export(node.l)}" if node.l else "child[missing]"
-    r_str = f"child {export(node.r)}" if node.r else "child[missing]"
-    return f" node {node.value} {l_str} {r_str}"
+def export(root, file):
+    file.write(f"{{{root.key}}}\n")
+    file.write("child ")
+    if root.left is None:
+        file.write("[missing]\n")
+    else:
+        file.write("{node\n")
+        export(root.left, file)
+        file.write("}\n")
+
+    file.write("child ")
+    if root.right is None:
+        file.write("[missing]\n")
+    else:
+        file.write("{node\n")
+        export(root.right, file)
+        file.write("}\n")
+    #TODO rempve last "}" and add ";"
 

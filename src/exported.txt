@@ -1,8 +1,6 @@
-{9}
+{6}
 child {node
-{5}
-child {node
-{3}
+{4}
 child {node
 {2}
 child {node
@@ -10,55 +8,28 @@ child {node
 child [missing]
 child [missing]
 }
+child {node
+{3}
 child [missing]
+child [missing]
+}
 }
 child {node
-{4}
+{5}
 child [missing]
 child [missing]
 }
 }
+child {node
+{8}
 child {node
 {7}
-child {node
-{6}
 child [missing]
 child [missing]
 }
 child {node
-{8}
+{9}
 child [missing]
 child [missing]
-}
-}
-}
-child {node
-{13}
-child {node
-{11}
-child {node
-{10}
-child [missing]
-child [missing]
-}
-child {node
-{12}
-child [missing]
-child [missing]
-}
-}
-child {node
-{15}
-child {node
-{14}
-child [missing]
-child [missing]
-}
-child {node
-{16}
-child [missing]
-child [missing]
-}
-}
 }
 }
