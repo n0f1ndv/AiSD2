@@ -18,7 +18,7 @@ from menu import menu
 
 def main():
     #python src/main.py --tree AVL or BST <<<< array of numbers
-    if len(sys.argv) != 3 or sys.argv[1] != "--tree":
+    if sys.argv[1] != "--tree":
         print("Usage: python src/main.py --tree AVL or BST <<<< array of numbers")
         sys.exit(1)
     
@@ -26,10 +26,16 @@ def main():
     if tree_type != "AVL" and tree_type != "BST":
         print("Error: Invalid tree type. Use 'AVL' or 'BST'.")
         sys.exit(1)
-
-    input=sys.stdin.readline().strip().split(",")
     try:
-        data=[int(x) for x in input]
+        if len(sys.argv) == 4:
+            data = [int(x) for x in sys.argv[3].split(',')]
+
+        else:
+            data=sys.stdin.read()
+            data = data.replace(' ',",")
+            data=[int(x) for x in data.split(",")]
+
+  
     except EOFError:
         print("Error reading input.")
         sys.exit(1)
@@ -50,3 +56,32 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# TODO: I need to check if dependencies are imported correctly
+
+# def main():
+#     #python src/main.py --tree AVL or BST <<<< array of numbers
+    
+#     tree_type = str(sys.argv[2])
+    
+#     if len(sys.argv) == 4:
+#         print(sys.argv[3].split(","))
+#         data = [int(x) for x in sys.argv[3].split(',')]
+#     elif len(sys.argv) > 4:
+#         print("Error: Wrong input")
+#         sys.exit(1)
+#     else:
+#         data=[int(x) for x in sys.stdin.readline().split()]
+
+#     menu(data, tree_type)
+
+
+# if __name__ == '__main__':
+#     main()
+        # else:
+        #     data=[]
+        #     temp=sys.stdin.read().split(",")
+        #     for i in temp:
+        #         for x in i.split():
+        #             data.append(int(x))

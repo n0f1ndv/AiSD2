@@ -49,15 +49,14 @@ def print_tree(tree):
 
 
 def delete_elements(tree, type):
+    
     to_del = [int(x) for x in input('delete> ').split()]
-
-    for num in to_del:
+    for num in to_del:    
         if type == 'BST':
             tree = delete_bst(tree, num)
         elif type == 'AVL':
             tree = delete_avl(tree, num)
             pass
-
     return tree
 
 def export(root, file):
@@ -77,5 +76,4 @@ def export(root, file):
         file.write("{node\n")
         export(root.right, file)
         file.write("}\n")
-    #TODO rempve last "}" and add ";"
 

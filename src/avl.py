@@ -50,7 +50,6 @@ def delete_avl(root, key):
     
     if root is None:
         return root
-    
     if key < root.key:
         root.left = delete_avl(root.left, key)
     elif key > root.key:
