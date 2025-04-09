@@ -1,6 +1,6 @@
 import sys
 from menu import menu
-
+import select
 # TODO: I need to check if dependencies are imported correctly
 
 # def main():
@@ -28,14 +28,25 @@ def main():
         sys.exit(1)
     try:
         if len(sys.argv) == 4:
-            data = [int(x) for x in sys.argv[3].split(',')]
+            data = [int(x) for x in sys.argv[3].replace(' ',",").split(',')]
 
-        else:
+        elif len(sys.argv) == 3:
             data=sys.stdin.read()
+            print(data)
             data = data.replace(' ',",")
             data=[int(x) for x in data.split(",")]
-
-  
+        else:
+            data=[]
+            if select.select([sys.stdin], [], [], 0.0)[0]:
+                temp = sys.stdin.read().strip().split(",")
+                for x in temp:
+                    data.append(int(x))
+            for i in range(3,len(sys.argv)):
+                temp=sys.argv[i].split(",")
+                for x in temp:
+                    data.append(int(x))
+            print(data)
+    
     except EOFError:
         print("Error reading input.")
         sys.exit(1)
@@ -46,10 +57,10 @@ def main():
         print('\nKeyboard Interrupt')
         sys.exit(1)
 
+    
     if len(data) == 0 or not data:
         print("Error: No input provided")
         sys.exit(1)
-    
     menu(data, tree_type)
 
 
