@@ -32,8 +32,7 @@ def main():
 
         elif len(sys.argv) == 3:
             data=sys.stdin.read()
-            print(data)
-            data = data.replace(' ',",")
+            data = data.strip().replace(' ',",").replace("\n", ",")
             data=[int(x) for x in data.split(",")]
         else:
             data=[]
@@ -45,7 +44,6 @@ def main():
                 temp=sys.argv[i].split(",")
                 for x in temp:
                     data.append(int(x))
-            print(data)
     
     except EOFError:
         print("Error reading input.")
