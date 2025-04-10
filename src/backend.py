@@ -1,7 +1,7 @@
-from bst import *
-from avl import *
+from bst import create_bst
+from avl import create_avl
 from traversals import *
-from delete import *
+from delete import delete
 
 def create_tree(lst, type):
     print(f'Inserting...', end=' ')

@@ -1,4 +1,6 @@
 from backend import *
+from bst import vine_to_bst
+from delete import delete_all
 from datetime import datetime
 import sys
 
@@ -6,7 +8,7 @@ def menu(lst, type,):
     state = ''
     tree = create_tree(lst, type)
 
-    #sys.stdin = open('/dev/tty')
+    sys.stdin = open('/dev/tty')
     while True and state != 'exit':
                
         try:
@@ -41,11 +43,6 @@ def menu(lst, type,):
             elif state == 'exit':
                 print('Closing the program')
                 state = 'exit'
-
-        except EOFError:
-            state = 'exit'
-            print('\nEnd of input detected. Exiting program.')
-            
         except KeyboardInterrupt:
             state = 'exit'
             print('\nKeyboard Interrupt')

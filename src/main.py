@@ -1,6 +1,6 @@
-import sys
 from menu import menu
 import select
+import sys
 
 def main():
     if sys.argv[1] != '--tree':
