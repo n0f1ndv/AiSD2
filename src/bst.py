@@ -1,8 +1,6 @@
 import math
 from nodes import Node
-from traversals import findmin
 
-# INSERTING ELEMENTS INTO BST
 def insert_bst(root, key):
     tmp = Node(key)
 
@@ -24,42 +22,6 @@ def insert_bst(root, key):
         parent.left = tmp
     else:
         parent.right = tmp
-
-    return root
-
-
-# DELETING FROM BST
-def delete_bst(root, key):
-    if root is None:
-        return None
-
-    if key < root.key:
-        root.left = delete_bst(root.left, key)
-    elif key > root.key:
-        root.right = delete_bst(root.right, key)
-    else:
-        if root.left is None:
-            temp = root.right
-            root = None
-            return temp
-        elif root.right is None:
-            temp = root.left
-            root = None
-            return temp
-        
-        temp = findmin(root.right)
-        root.key = temp.key
-
-        root.right = delete_bst(root.right, temp.key)
-
-    return root
-
-
-def delete_all_bst(root):
-    if root:
-        delete_all_bst(root.left)
-        delete_all_bst(root.right)
-        root = None
 
     return root
 

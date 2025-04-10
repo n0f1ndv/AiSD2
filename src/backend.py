@@ -1,6 +1,7 @@
 from bst import *
 from avl import *
 from traversals import *
+from delete import *
 
 def create_tree(lst, type):
     print(f'Inserting...', end=' ')
@@ -20,12 +21,12 @@ def create_tree(lst, type):
 
 def help_message():
     print('Help Show this menu',
-    'FindMinMax Searching minimum and maximum value in the tree',
+    'FindMinMax Searching minimum and maximum value in the tree (fmm for short)',
     'Print      Print the tree using In-order, Pre-order, Post-order',
     'Delete     Delete elements from the tree',
     'Delete All Delete whole tree',
     'Export     Export the tree to a file',
-    'Rebalance  Rebalance the tree',
+    'Rebalance  Rebalance the tree (BST only)',
     'Exit       Exits the program (same as CTRL+D)', sep='\n')
 
 
@@ -48,16 +49,14 @@ def print_tree(tree):
     print()
 
 
-def delete_elements(tree, type):
-    
+def delete_elements(tree):
     to_del = [int(x) for x in input('delete> ').split()]
+
     for num in to_del:    
-        if type == 'BST':
-            tree = delete_bst(tree, num)
-        elif type == 'AVL':
-            tree = delete_avl(tree, num)
-            pass
+        tree = delete(tree, num)
+
     return tree
+
 
 def export(root, file):
     file.write(f"{{{root.key}}}\n")
@@ -76,4 +75,3 @@ def export(root, file):
         file.write("{node\n")
         export(root.right, file)
         file.write("}\n")
-
