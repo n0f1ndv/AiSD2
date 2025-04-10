@@ -9,10 +9,8 @@ def create_tree(lst, type):
         print(f'{num}', end=' ')
     print()
 
-    root = Node(lst[0])
     if type == 'BST':    
-        for num in lst[1:]:
-            root = insert_bst(root, num)
+        root = create_bst(lst)
     elif type == 'AVL':
         root = create_avl(lst)
 

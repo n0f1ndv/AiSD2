@@ -26,6 +26,15 @@ def insert_bst(root, key):
     return root
 
 
+def create_bst(lst):
+    root = Node(lst[0])
+
+    for num in lst[1:]:
+        root = insert_bst(root, num)
+
+    return root
+
+
 # BALANCING BST
 def bst_to_vine(root):
     count = 0

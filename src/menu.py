@@ -11,39 +11,41 @@ def menu(lst, type,):
                
         try:
             state = input('action> ').strip().lower()
+
+            if state == 'help':
+                help_message()
+
+            elif state == 'findminmax' or state == 'fmm':
+                findminmax(tree)
+
+            elif state == 'print':
+                print_tree(tree)
+
+            elif state == 'delete':
+                tree = delete_elements(tree)
+
+            elif state == 'delete all':
+                tree = delete_all(tree)
+
+            elif state == 'export':
+                with open(f'../data/exported{datetime.now().strftime('%H%M%S')}.txt', 'w') as file:
+                    export(tree, file)
+                print('Exporting')
+
+            elif state == 'rebalance':
+                if type == 'BST':
+                    tree = vine_to_bst(tree)
+                else:
+                    print('This operation is only avaiable for BST')
+
+            elif state == 'exit':
+                print('Closing the program')
+                state = 'exit'
+
         except EOFError:
             state = 'exit'
             print('\nEnd of input detected. Exiting program.')
+            
         except KeyboardInterrupt:
             state = 'exit'
             print('\nKeyboard Interrupt')
-
-        if state == 'help':
-            help_message()
-
-        elif state == 'findminmax' or state == 'fmm':
-            findminmax(tree)
-
-        elif state == 'print':
-            print_tree(tree)
-
-        elif state == 'delete':
-            tree = delete_elements(tree)
-
-        elif state == 'delete all':
-            tree = delete_all(tree)
-
-        elif state == 'export':
-            with open(f'../data/exported{datetime.now().strftime('%H%M%S')}.txt', 'w') as file:
-                export(tree, file)
-            print('Exporting')
-
-        elif state == 'rebalance':
-            if type == 'BST':
-                tree = vine_to_bst(tree)
-            else:
-                print('This operation is only avaiable for BST')
-
-        elif state == 'exit':
-            print('Closing the program')
-            state = 'exit'
