@@ -41,21 +41,23 @@ def main():
                 for x in temp:
                     data.append(int(x))
             for i in range(3,len(sys.argv)):
-                temp=sys.argv[i].split(",")
+                temp=sys.argv[i].strip(",").split(",")
                 for x in temp:
                     data.append(int(x))
     
     except EOFError:
         print("Error reading input.")
         sys.exit(1)
-    except ValueError:
-        print("Error: Invalid integer")
-        sys.exit(1)
+    # except ValueError:
+    #     print("Error: Invalid integer")
+    #     sys.exit(1)
     except KeyboardInterrupt:
         print('\nKeyboard Interrupt')
         sys.exit(1)
-
-    
+    tmp = data
+    data=[]
+    data = [x for x in tmp if x not in data]
+    print(data)
     if len(data) == 0 or not data:
         print("Error: No input provided")
         sys.exit(1)

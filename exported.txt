@@ -1,10 +1,10 @@
 {4}
 child {node
+{3}
+child {node
 {2}
 child {node
 {1}
-child {node
-{0}
 child [missing]
 child [missing]
 }
@@ -17,14 +17,14 @@ child [missing]
 }
 }
 child {node
-{6}
-child {node
 {5}
+child {node
+{4}
 child [missing]
 child [missing]
 }
 child {node
-{7}
+{5}
 child [missing]
 child [missing]
 }
