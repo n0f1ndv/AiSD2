@@ -48,10 +48,12 @@ def print_tree(tree):
 
 
 def delete_elements(tree):
-    to_del = [int(x) for x in input('delete> ').split()]
-
-    for num in to_del:    
-        tree = delete(tree, num)
+    try:
+        to_del = [int(x) for x in input('delete> ').replace(","," ").split()]
+        for num in to_del:    
+            tree = delete(tree, num)
+    except ValueError:
+        print('Error: Invalid integer')
 
     return tree
 
