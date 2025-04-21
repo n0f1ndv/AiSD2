@@ -1,6 +1,7 @@
 from menu import menu
 import select
 import sys
+import time
 
 def main():
     stdin_state = select.select([sys.stdin], [], [], 0.0)[0]
@@ -17,7 +18,7 @@ def main():
             data = [int(x) for x in sys.argv[3].replace(' ',',').split(',')]
 
         elif len(sys.argv) == 3:
-            data=sys.stdin.read()
+            data=sys.stdin.readline()
             data = data.strip().replace(',',' ').replace('\n', ' ')
             data=[int(x.strip()) for x in data.split()]
         else:
@@ -49,7 +50,11 @@ def main():
         if x not in data:
             data.append(x)
     
-    menu(data, tree_type)
+    benchmark={"rebalance":True,
+               "findminmax":True,
+               "print":True,
+               "create":True}
+    menu(data, tree_type,benchmark)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(10**6)
 def inorder(node):
     if node:
         inorder(node.left)

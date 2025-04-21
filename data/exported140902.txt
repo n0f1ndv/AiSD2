@@ -1,0 +1,31 @@
+{5}
+child {node
+{3}
+child {node
+{2}
+child {node
+{1}
+child [missing]
+child [missing]
+}
+child [missing]
+}
+child {node
+{4}
+child [missing]
+child [missing]
+}
+}
+child {node
+{7}
+child {node
+{6}
+child [missing]
+child [missing]
+}
+child {node
+{8}
+child [missing]
+child [missing]
+}
+}

@@ -2,6 +2,7 @@ from bst import create_bst
 from avl import create_avl
 from traversals import *
 from delete import delete
+import time
 
 def create_tree(lst, type):
     print(f'Inserting...', end=' ')
@@ -33,10 +34,23 @@ def findminmax(tree):
     print(f'Max: {findmax(tree).key}')
 
 
-def print_tree(tree):
-    print('In-order:', end=' ')
-    inorder(tree)
-    print()
+def print_tree(tree,b,type,size,input_type):
+    if not b["print"]:
+        print('In-order:', end=' ')
+        inorder(tree)
+        print()
+    else:
+        start = time.time()
+        print('In-order:', end=' ')
+        inorder(tree)
+        print()
+        stop = time.time()
+        elapsed_time = round(stop - start, 4)
+        print(elapsed_time)
+
+        with open(f'benchmark_results/{type}/print_{input_type}.csv', 'a') as file:
+            file.write(f"print,{elapsed_time},{size}\n")
+
 
     print('Pre-order:', end=' ')
     preorder(tree)
